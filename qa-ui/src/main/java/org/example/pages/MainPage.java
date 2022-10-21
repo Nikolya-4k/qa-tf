@@ -8,15 +8,19 @@ import org.example.utils.ConfigProvider;
 import org.example.utils.WaitUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MainPage extends Page {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(MainPage.class);
+
     public static final String TITLE = "WeaveSocks";
 
-    public final TextLink registerLink = new TextLink(driver, By.xpath("//li[@id='register']/a"));
-    public final TextLink loginLink = new TextLink(driver, By.xpath("//li[@id='login']/a"));
-    public final TextLink loggedUserLink = new TextLink(driver, By.xpath("//li[@id='howdy']/a"));
-    public final TextLink logoutLink = new TextLink(driver, By.id("logout"));
+    public final TextLink registerLink = new TextLink(driver, By.xpath("//li[@id='register']/a"), "Register Link");
+    public final TextLink loginLink = new TextLink(driver, By.xpath("//li[@id='login']/a"), "Login Link");
+    public final TextLink loggedUserLink = new TextLink(driver, By.xpath("//li[@id='howdy']/a"), "Logged User Link");
+    public final TextLink logoutLink = new TextLink(driver, By.id("logout"), "Logout Link");
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -34,8 +38,10 @@ public class MainPage extends Page {
 
     @Override
     public MainPage open() {
+        LOGGER.info("Is about to open Main page");
         driver.get(ConfigProvider.BASE_URL);
         ensureOpen();
+        LOGGER.info("Main page is open");
         return this;
     }
 
@@ -77,11 +83,11 @@ public class MainPage extends Page {
 
     public class RegisterForm {
 
-        public final TextField userName = new TextField(driver, By.id("register-username-modal"));
-        public final TextField firstName = new TextField(driver, By.id("register-first-modal"));
-        public final TextField lastName = new TextField(driver, By.id("register-last-modal"));
-        public final TextField email = new TextField(driver, By.id("register-email-modal"));
-        public final TextField password = new TextField(driver, By.id("register-password-modal"));
+        public final TextField userName = new TextField(driver, By.id("register-username-modal"), "User Name");
+        public final TextField firstName = new TextField(driver, By.id("register-first-modal"), "First Name");
+        public final TextField lastName = new TextField(driver, By.id("register-last-modal"), "Last Name");
+        public final TextField email = new TextField(driver, By.id("register-email-modal"), "Email");
+        public final TextField password = new TextField(driver, By.id("register-password-modal"), "Password");
         public final Button registerButton = new Button(driver, By.xpath("//button[normalize-space()='Register']"));
 
         public void fillResisterForm(User user) {
@@ -96,8 +102,8 @@ public class MainPage extends Page {
     }
 
     public class LoginForm {
-        public final TextField userNameLogin = new TextField(driver, By.id("username-modal"));
-        public final TextField passwordLogin = new TextField(driver, By.id("password-modal"));
+        public final TextField userNameLogin = new TextField(driver, By.id("username-modal"), "User Name Login");
+        public final TextField passwordLogin = new TextField(driver, By.id("password-modal"), "Password Login");
         public final Button loginButton = new Button(driver, By.xpath("//button[@onclick='return login()']"));
 
         public void fillInLoginForm(User user) {
