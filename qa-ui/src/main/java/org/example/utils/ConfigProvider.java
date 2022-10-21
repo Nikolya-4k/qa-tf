@@ -14,6 +14,7 @@ public final class ConfigProvider {
 
     public static final String SELENOID_HUB = prop.getProperty("selenoid.hub");
 
+    public static final boolean isHighlight = Boolean.parseBoolean(prop.getProperty("highlight"));
     private ConfigProvider() {
     }
 
