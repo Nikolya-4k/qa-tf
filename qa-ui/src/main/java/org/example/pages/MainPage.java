@@ -97,7 +97,7 @@ public class MainPage extends Page {
             email.setValue(user.getEmail());
             password.setValue(user.getPassword());
             registerButton.click();
-            WaitUtils.waitElementToDisappear(driver, registerButton.getWebElement());
+            WaitUtils.waitElementToDisappear(driver, password.getWebElement());
         }
     }
 

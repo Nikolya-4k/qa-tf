@@ -14,7 +14,7 @@ public class WaitUtils {
 
     public static void waitElementToDisappear(WebDriver driver, WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(ConfigProvider.DRIVER_WAIT_TIMEOUT));
-        wait.pollingEvery(Duration.ofSeconds(1));
+        wait.pollingEvery(Duration.ofMillis(500));
         wait.ignoring(TimeoutException.class);
         wait.withMessage("Element is not visible");
         wait.until(ExpectedConditions.stalenessOf(element));
