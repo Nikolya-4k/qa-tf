@@ -4,7 +4,7 @@ import org.example.browser.WebDriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-
+//Test fraemwork
 public class BaseTest {
 
     private static final ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
